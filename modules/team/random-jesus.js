@@ -1,4 +1,4 @@
-const Chess = require('chess.js'),
+const Chess = require('chess.js').Chess,
     move = board => {
         var chess = new Chess(board),
             moves = chess.moves(),
@@ -6,4 +6,4 @@ const Chess = require('chess.js'),
         return move;
     };
 
-module.exports = { name: "rnd-jesus", move: move };
+module.exports = { name: "random-jesus", move: move };
