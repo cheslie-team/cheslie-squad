@@ -16,16 +16,22 @@ var Player = class Player {
             this.game.emit('move', gameState);
         };
         this.game.doMove = (gameState) => {
-            var move = this.ai.move(gameState.board);
-            if (typeof move === "string") {
-                this.game.emitMove(gameState, move);
-            } else {
-                move.then(move => {
+            try {
+                var move = this.ai.move(gameState.board);
+                if (typeof move === "string") {
                     this.game.emitMove(gameState, move);
-                }).catch(err => {
-                    console.error(err.error);
-                    this.game.emitMove(gameState, err.move);
-                });
+                } else {
+                    move.then(move => {
+                        this.game.emitMove(gameState, move);
+                    }).catch(err => {
+                        console.error(err.error);
+                        this.game.emitMove(gameState, err.move);
+                    });
+                }
+            } catch (error) {
+                console.error(error);
+                this.game.disconnect();
+                this.tournament.disconnect()
             }
         }
 

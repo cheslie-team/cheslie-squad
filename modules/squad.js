@@ -9,11 +9,11 @@ var Squad = class Squad {
         this.initPlayers();
     }
     initPlayers() {
-        var homeStadium = path.join('.', 'modules', this.name);
+        var homeStadium = path.join('.', 'modules', 'teams', this.name);
         fs.readdir(homeStadium, (err, files) => {
             if (err) return console.error(err);
             files.forEach(aiFile => {
-                var aiPath = path.join('.', this.name, aiFile)
+                var aiPath = path.join('.', 'teams', this.name, aiFile)
                 this.players.push(new Player(aiPath))
             });
         })

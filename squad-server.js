@@ -5,7 +5,8 @@ var config = require('cheslie-config'),
   squads = [];
 
 
-squads.push(new Squad('team'))
+// squads.push(new Squad('error-team'))
+squads.push(new Squad('random-team'))
 
 io.on('connect', function (socket) {
 });
